@@ -1,8 +1,7 @@
 import cv2      # opencv
 import os
 import math
-from CroppingImplementation import utils    # used to get screen resolution (assumes user is on windows pc)
-from CroppingImplementation import image
+from cropping_package.CroppingImplementation import utils, image
 
 
 class UserImage():
@@ -210,7 +209,7 @@ class CropUserImages():
             if k == 13 :        #Enter - key
                 # press enter to create and save the cropped images and then the program will exit
                 self.create_and_save_cropped_images()
-
+                break
 
             if k == ord('r'):   #press r to rotate the image
                 self.rescale_current_image()

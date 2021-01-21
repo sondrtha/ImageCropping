@@ -1,4 +1,4 @@
-from CroppingImplementation.croppingImages import CropUserImages
+from cropping_package.CroppingImplementation.croppingImages import CropUserImages
 
 
 def createCroppedImages(input_folder_path):
