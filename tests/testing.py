@@ -1,4 +1,5 @@
-import cropping
+from cropping_package import cropping
+
 
 def testCreateCroppedImages():
     input_folder_path = "MyImageFolder//"  # set to your desired input folder path here

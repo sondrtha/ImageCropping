@@ -68,7 +68,7 @@ class CropUserImages():
             userImagesToBeCropped.append(userImage)
         return userImagesToBeCropped
 
-    def rescale_current_image(self):
+    def rotate_current_image(self):
         self.images_to_be_cropped[self.current_image_index].rotate_image()
 
     def has_marked_a_rectangle(self):
@@ -212,4 +212,4 @@ class CropUserImages():
                 break
 
             if k == ord('r'):   #press r to rotate the image
-                self.rescale_current_image()
+                self.rotate_current_image()
