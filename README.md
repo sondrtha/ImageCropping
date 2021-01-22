@@ -16,7 +16,7 @@ _Illustration video for using the code: (you might want to set youtube speed to 
 
 <br/>
 
-###Information about the code:  
+### Information about the code:  
 The cropped images will be generated after you are done selecting areas to crop
 * to mark the region of a image you want to crop: 
 	* click with the left mouse button on a corner of the rectangular region you want to crop. 
