@@ -1,7 +1,7 @@
 from cropping_package.CroppingImplementation.croppingSession import CroppingSession
 
 
-def createCroppedImages(input_folder_path):
+def create_cropped_images(input_folder_path):
     """
     This is the only function intended to be used by the user of this package
 
@@ -20,5 +20,5 @@ def createCroppedImages(input_folder_path):
     then the cropped images will be generated and saved to the output-location given by out//
     """
 
-    cropUserImages = CroppingSession(input_folder_path)
-    cropUserImages.loop()
+    cropping_session = CroppingSession(input_folder_path)
+    cropping_session.loop()

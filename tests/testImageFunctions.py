@@ -29,13 +29,10 @@ def test_draw_marked_rectangle():
 
 
 def test_get_rectangle():
-
-
     p1 = (10, 10)
     p2 = (20, 30)
     min_x, min_y, width, height = get_rectangle(p1, p2)
     assert(min_x == 10 and min_y == 10 and width == 11 and height == 21)
-
 
     for _ in range(20):
         x1 = random.randint(0,500)
@@ -62,6 +59,7 @@ def test_get_distance():
 
 
 def test_get_corner_points_from_rectangle():
+
     def test():
         x_min = random.randint(0, 100)
         y_min = random.randint(0, 100)
@@ -99,7 +97,6 @@ def test_rotate90():
     new_y = w0 - 1 - old_x
     new_x = old_y
     assert(np.array_equal(new_img[new_y,new_x], img[old_y, old_x]))
-
 
 
 def test_calculate_scaling():
