@@ -6,4 +6,6 @@ def testCreateCroppedImages():
                                            # In this example the example-images in the folder MyImageFolder is used
     cropping.createCroppedImages(input_folder_path)
 
+
 testCreateCroppedImages()
+

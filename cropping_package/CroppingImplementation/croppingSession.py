@@ -1,44 +1,10 @@
 import cv2      # opencv
 import os
-import math
+#import math
 from cropping_package.CroppingImplementation import utils, image
+from cropping_package.CroppingImplementation.userImage import UserImage
 
-
-class UserImage():
-    """
-    Objects of this class contains both a version of the image provided by the user in its original size
-    and also a scaled down version used to display each image so the entire image fits inside the screen.
-    """
-
-    #screen_resolution = (1920, 1080)                   # use this if you are not on windows
-    screen_resolution = utils.get_screen_resolution()   # use windows api to find screen resolution
-
-    def __init__(self, original_image):
-        self.original_image = original_image
-        self.scale = self.calculate_scaling(original_image)
-        self.scaled_image = image.get_shrunken_image(original_image, self.scale)
-
-    def get_scaled_image(self):
-        return self.scaled_image
-
-    @staticmethod
-    def calculate_scaling(img):
-        #calculate a scale so that the image fits within the screen
-        screen_resolution_width, screen_resolution_height = UserImage.screen_resolution
-        h, w = img.shape[:2]
-        temp1 = math.ceil(h / screen_resolution_height)
-        temp2 = math.ceil(w / screen_resolution_width)
-        scale = max(temp1, temp2)
-        return scale
-
-    def rotate_image(self):
-        #rotate the originally sized image, then recalculate the scaling and rescale the shrunken image
-        self.original_image = image.rotate90(self.original_image)
-        self.scale = self.calculate_scaling(self.original_image)
-        self.scaled_image = image.get_shrunken_image(self.original_image, self.scale)
-
-
-class CropUserImages():
+class CroppingSession():
     def __init__(self, input_folder_path):
         self.input_folder_path = input_folder_path
         self.images_to_be_cropped = self.create_list_of_user_images()    # list of objects of type userImage, see userImage class
@@ -86,6 +52,7 @@ class CropUserImages():
 
         if event == cv2.EVENT_LBUTTONUP:
             self.marked_position_pair = (self.marked_pos, (x,y))
+            self.add_current_marked_rectangle()
             self.marked_pos = None
 
         if event == cv2.EVENT_MOUSEMOVE:
@@ -120,12 +87,14 @@ class CropUserImages():
             marked_position_pair = image.get_corner_points_from_rectangle(crop_rect)
             return marked_position_pair
 
-
-    def save_crop_image_state(self):
-        #This function is called in order to save crop-information about the current image before moving to another image
+    def add_current_marked_rectangle(self):
         if (self.has_marked_a_rectangle()):
             marked_rectangle = self.get_rectangle(self.marked_position_pair)
             self.marked_rectangles_dict[self.current_image_index] = marked_rectangle
+
+    def save_crop_image_state(self):
+        #This function is called in order to save crop-information about the current image before moving to another image
+        self.add_current_marked_rectangle()
         self.marked_position_pair = None
         self.marked_pos = None
 
@@ -183,6 +152,22 @@ class CropUserImages():
         self.save_resulting_cropped_images()
 
 
+    def keyHandler(self, k):
+        if k == 2555904:  # RIGHT - key
+            # press the right arrow to go to the next image on the list
+            self.right_arrow()
+
+        if k == 2424832:  # left - key
+            # go to the previous image on the list
+            self.left_arrow()
+
+        if k == 13:  # Enter - key
+            # press enter to create and save the cropped images and then the program will exit
+            self.create_and_save_cropped_images()
+
+        if k == ord('r'):  # press r to rotate the image
+            self.rotate_current_image()
+
 
     def loop(self):
         cv2.namedWindow("Frame")
@@ -193,23 +178,14 @@ class CropUserImages():
             cv2.imshow("Frame", img)
             k = cv2.waitKeyEx(5)
 
-            if k == 27:         #ESC -key
+            if k == 27:  # ESC -key
                 # press the Esc-key to stop the program.
                 # the cropping information about the images will be lost
                 break
 
-            if k == 2555904:    #RIGHT - key
-                #press the right arrow to go to the next image on the list
-                self.right_arrow()
 
-            if k == 2424832:    #left - key
-                # go to the previous image on the list
-                self.left_arrow()
+            self.keyHandler(k)
 
-            if k == 13 :        #Enter - key
+            if k == 13:  # Enter - key
                 # press enter to create and save the cropped images and then the program will exit
-                self.create_and_save_cropped_images()
                 break
-
-            if k == ord('r'):   #press r to rotate the image
-                self.rotate_current_image()

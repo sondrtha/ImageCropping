@@ -1,4 +1,4 @@
-from cropping_package.CroppingImplementation.croppingImages import CropUserImages
+from cropping_package.CroppingImplementation.croppingSession import CroppingSession
 
 
 def createCroppedImages(input_folder_path):
@@ -20,5 +20,5 @@ def createCroppedImages(input_folder_path):
     then the cropped images will be generated and saved to the output-location given by out//
     """
 
-    cropUserImages = CropUserImages(input_folder_path)
+    cropUserImages = CroppingSession(input_folder_path)
     cropUserImages.loop()
