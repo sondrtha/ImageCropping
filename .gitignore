@@ -2,3 +2,4 @@
 /.pytest_cache
 /PrivateFiles
 /tests/out
+/tests/.pytest_cache
