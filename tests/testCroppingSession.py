@@ -2,7 +2,7 @@ import os
 import cv2
 from collections import namedtuple
 from cropping_package.CroppingImplementation.croppingSession import CroppingSession, UserImage
-from utils import remove_out_files
+from utils_for_testing.utils import remove_out_files
 
 # The tests in testImageFunctions and testUtils should preferably run before the tests in this file are run
 
