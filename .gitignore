@@ -1,6 +1,5 @@
 /.idea
 /.pytest_cache
 /PrivateFiles
-/tests/out
 /tests/.pytest_cache
 /cropping_package/.pytest_cache
