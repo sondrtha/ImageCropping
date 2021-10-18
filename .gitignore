@@ -2,3 +2,4 @@
 /.pytest_cache
 /tests/.pytest_cache
 /cropping_package/.pytest_cache
+/tests/utils_for_testing/__pycache__
