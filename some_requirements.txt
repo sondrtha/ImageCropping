@@ -1,0 +1,4 @@
+cropping-package==0.0.1
+numpy==1.20.3
+opencv-contrib-python==4.5.3.56
+pytest==6.2.5

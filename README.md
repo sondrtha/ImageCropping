@@ -31,6 +31,14 @@ The cropped images will be generated after you are done selecting areas to crop
 	* the "cropping session" will now end 
 
 
+#### requirements
+This subsection is almost useless so feel free to skip it.....
+The project includes a file called some_requirements.txt that contains some (maybe all?) the necessary
+python packages to run the code for this project. However the packages named in some_requirements.txt 
+are a subset of the packages shown when running pip freeze from a virtualenvironment I have
+on WSL (Windows subsystem for Linux), which passes all tests that did not require windows. 
+You might prefer to use some other versions of the packages though. 
+
 ### running automated tests
 This project uses the win32api- so, it will only run on windows "out of the box". However only small
 changes are needed for it to run on Linux as well. Use the following commands for testing: 
