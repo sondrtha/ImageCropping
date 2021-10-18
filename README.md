@@ -31,7 +31,7 @@ The cropped images will be generated after you are done selecting areas to crop
 	* the "cropping session" will now end 
 
 
-###running automated tests
+###running automated tests\
 This project uses the win32api- so, it will only run on windows "out of the box". However only small
 changes are needed for it to run on Linux as well. Use the following commands for testing: 
 
